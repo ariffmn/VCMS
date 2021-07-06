@@ -50,7 +50,6 @@ class VideoQuery extends \yii\db\ActiveQuery
 
     public function byKeyword($keyword)
     {
-        return $this->andWhere("MATCH(title, description, tags)
-        AGAINST (:keyword)", ['keyword' => $keyword]);
+        return $this->andWhere("MATCH(title, description, tags) AGAINST (:keyword IN BOOLEAN MODE)", ['keyword' => $keyword]);
     }
 }
